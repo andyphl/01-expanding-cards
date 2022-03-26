@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import "./mixin";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Mulish", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+}
+
+.panel {
+  @for $i from 1 through 5 {
+    &--#{$i} {
+      background-image: url("https://picsum.photos/id/#{$i + 869}/1000/1000");
+    }
+  }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 3rem;
+  height: 80vh;
+  margin: 0.5rem;
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+  transition: flex 0.5s ease-in-out;
+
+  &__title {
+    position: absolute;
+    bottom: 2rem;
+    left: 1rem;
+    color: #fff;
+    text-shadow: 0px 0px 5px #000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+  }
+
+  &--active {
+    flex: 5;
+  }
+
+  &--active &__title {
+    opacity: 1;
+  }
+
+  &:nth-of-type(4),
+  &:nth-of-type(5) {
+    display: none;
+
+    @include md {
+      display: flex;
+    }
+  }
+}
